@@ -14,6 +14,10 @@ public class RegisterPage extends GeneralPage{
 	private final By _txtConfirmPassword = By.xpath("//input[@id='confirmPassword']");
 	private final By _txtPid = By.xpath("//input[@id='pid']");
 	private final By _btnRegister = By.xpath("//input[@value='Register']");
+	private final By _lblRegisterErrorMsg = By.xpath("//p[@class=\"message error\"]");
+	private final By _lblPasswordErrorMsg = By.xpath("//label[@class='validation-error'and@for='password']");
+	private final By _lblPidErrorMsg = By.xpath("//label[@class='validation-error'and@for='pid']");
+
 	
 	// Elements
 	
@@ -37,6 +41,29 @@ public class RegisterPage extends GeneralPage{
         return Constant.WEBDRIVER.findElement(_btnRegister);
     }
 	
+	public WebElement getLblRegisterErrorMsg() {
+		return Constant.WEBDRIVER.findElement(_lblRegisterErrorMsg);
+	}
+	
+	public WebElement getLblPasswordErrorMsg() {
+		return Constant.WEBDRIVER.findElement(_lblPasswordErrorMsg);
+	}
+	
+	public WebElement getLblPidErrorMsg() {
+		return Constant.WEBDRIVER.findElement(_lblPidErrorMsg);
+	}
+	
+	public String getPasswordErrorMsg() {
+		return  getLblPasswordErrorMsg().getText();
+	}
+	
+	public String getPidErrorMsg() {
+		return getLblPidErrorMsg().getText();
+	}
+	
+	public String getRegisterErrorMsg() {
+		return getLblRegisterErrorMsg().getText();
+	}
 	// Methods
 	public void register(String email, String password, String confirmPassword, String pid) {
 		this.getTxtEmail().sendKeys(email);
@@ -44,10 +71,7 @@ public class RegisterPage extends GeneralPage{
 		this.getTxtConfirmPassword().sendKeys(confirmPassword);
 		this.getTxtPid().sendKeys(pid);
 		//this.getBtnRegister().click();
-		Utilities.clickByJS(this.getBtnRegister());
-		
-		
-		
+		Utilities.clickByJS(this.getBtnRegister());		
 		
 	}
 }

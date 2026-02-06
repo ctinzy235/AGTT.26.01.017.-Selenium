@@ -1,0 +1,5 @@
+package Common;
+
+public enum Tab {
+    LOGIN, REGISTER, LOGOUT, FAQ, CONTACT, TIMETABLE, TICKETPRICE, BOOKTICKET
+}

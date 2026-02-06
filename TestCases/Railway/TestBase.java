@@ -7,6 +7,10 @@ import org.testng.annotations.BeforeMethod;
 import Constant.Constant;
 
 public class TestBase {
+	
+	protected HomePage homePage;
+    protected LoginPage loginPage;
+    protected RegisterPage registerPage;
 
 	@BeforeMethod
     public void beforeMethod() {
@@ -15,6 +19,10 @@ public class TestBase {
         Constant.WEBDRIVER = new ChromeDriver();
 
         Constant.WEBDRIVER.manage().window().maximize();
+        
+        homePage = new HomePage();
+        loginPage = new LoginPage();
+        registerPage = new RegisterPage();
     }
 
 	@AfterMethod
