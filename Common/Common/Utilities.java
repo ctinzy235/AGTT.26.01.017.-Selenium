@@ -36,4 +36,16 @@ public class Utilities {
 	    element.click();
 	}
 	
+	public static void safeSendKeys(By locator, String text) {
+	    WaitUtils.waitForVisible(locator);
+	    
+	    WebElement element = Constant.WEBDRIVER.findElement(locator);
+	    
+	    scrollToElement(element);
+	    
+	    element.clear();
+	    
+	    element.sendKeys(text);
+	}
+	
 }

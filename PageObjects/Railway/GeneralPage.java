@@ -19,7 +19,6 @@ public class GeneralPage {
         return By.xpath(xpath);
     }
         
-    
     public String getWelcomeMessage() {
         WaitUtils.waitForVisible(lblWelcomeMessage);
         return Constant.WEBDRIVER.findElement(lblWelcomeMessage).getText();

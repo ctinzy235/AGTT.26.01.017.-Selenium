@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import Constant.Constant;
 import DataObjects.User;
 import Common.Tab;
+//import Common.CreatAccount;
 
 public class CreatAccountTest extends TestBase{
 
@@ -31,7 +32,6 @@ public class CreatAccountTest extends TestBase{
 		System.out.println("VP: Error message \"This email address is already in use.\" displays above the form.");
 		Assert.assertEquals(actualErrorMsg,expectedErrorMsg,"Error message for 'Email address already in use' is not displayed correctly!");
 	
-		
 	}
 	
 	@Test
@@ -69,5 +69,7 @@ public class CreatAccountTest extends TestBase{
 		Assert.assertEquals(actualErrorMsg3, expectedErrorMsg3, "PID validation error message is not displayed correctly!");
 		
 	}
+	
+	
 	
 }
