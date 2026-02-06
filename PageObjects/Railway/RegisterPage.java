@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 
 import Common.Utilities;
 import Constant.Constant;
+import DataObjects.User;
+
 
 public class RegisterPage extends GeneralPage{
 
@@ -65,13 +67,12 @@ public class RegisterPage extends GeneralPage{
 		return getLblRegisterErrorMsg().getText();
 	}
 	// Methods
-	public void register(String email, String password, String confirmPassword, String pid) {
-		this.getTxtEmail().sendKeys(email);
-		this.getTxtPassword().sendKeys(password);
-		this.getTxtConfirmPassword().sendKeys(confirmPassword);
-		this.getTxtPid().sendKeys(pid);
-		//this.getBtnRegister().click();
-		Utilities.clickByJS(this.getBtnRegister());		
+	public void register(User user) {
+		this.getTxtEmail().sendKeys(user.getEmail());
+		this.getTxtPassword().sendKeys(user.getPassword());
+		this.getTxtConfirmPassword().sendKeys(user.getConfirmPassword());
+		this.getTxtPid().sendKeys(user.getPid());
+		Utilities.safeClick(btnRegister);	
 		
 	}
 }

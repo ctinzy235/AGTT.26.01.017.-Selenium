@@ -20,4 +20,20 @@ public class Utilities {
         js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 	
+	public static void scrollToElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+	
+	public static void safeClick(By locator) {
+
+		WaitUtils.waitForClickable(locator);
+	    
+	    WebElement element = Constant.WEBDRIVER.findElement(locator);
+	    
+	    scrollToElement(element);
+	    
+	    element.click();
+	}
+	
 }

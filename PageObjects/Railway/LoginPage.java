@@ -3,6 +3,9 @@ package Railway;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import Constant.Constant;
+import Common.Utilities;
+import DataObjects.User;
+
 
 public class LoginPage extends GeneralPage {
     // Locators
@@ -20,10 +23,6 @@ public class LoginPage extends GeneralPage {
         return Constant.WEBDRIVER.findElement(txtPassword);
     }
 
-    public WebElement getBtnLogin() {
-        return Constant.WEBDRIVER.findElement(btnLogin);
-    }
-
     protected WebElement getLblLoginErrorMsg() {
         return Constant.WEBDRIVER.findElement(lblLoginErrorMsg);
     }
@@ -33,10 +32,10 @@ public class LoginPage extends GeneralPage {
     }
 
     // Methods
-    public HomePage login(String username, String password) {
-        this.getTxtUsername().sendKeys(username);
-        this.getTxtPassword().sendKeys(password);
-        this.getBtnLogin().click();
+    public HomePage login(User user) {
+        this.getTxtUsername().sendKeys(user.getEmail());
+        this.getTxtPassword().sendKeys(user.getPassword());
+        Utilities.safeClick(btnLogin);
         return new HomePage();
     }
 }
