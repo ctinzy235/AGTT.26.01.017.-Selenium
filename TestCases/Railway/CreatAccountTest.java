@@ -5,7 +5,9 @@ import org.testng.annotations.Test;
 import Constant.Constant;
 import DataObjects.User;
 import Common.Tab;
-//import Common.CreatAccount;
+import GuerrillaMail.GeneralPage;
+import Common.Random;
+import Common.Utilities;
 
 public class CreatAccountTest extends TestBase{
 
@@ -68,6 +70,43 @@ public class CreatAccountTest extends TestBase{
 		System.out.println("VP: Next to PID field, error message \"Invalid ID length.\" displays");
 		Assert.assertEquals(actualErrorMsg3, expectedErrorMsg3, "PID validation error message is not displayed correctly!");
 		
+	}
+	
+	@Test
+	public void TC09() {
+		
+		String userName = Random.getRandomString(8);
+		String fullMail = GeneralPage.creatMail(userName);
+		User userRegister = new User(fullMail, Constant.PASSWORD,Constant.PASSWORD, "12345678");
+		
+		System.out.println("TC09 - User create and activate account");
+
+		System.out.println("Step 1. Navigate to QA Railway Website");
+		homePage.open();
+		
+		
+		System.out.println("Step 2. Click on \"Create an account\"");
+		homePage.gotoPage(Tab.REGISTER);
+		
+		System.out.println("Step 3. Enter valid information into all fields");
+		System.out.println("Step 4. Click on \"Register\" button");
+		registerPage.register(userRegister);
+		
+		System.out.println("Step 5. Get email information (webmail address, mailbox and password) and navigate to that webmail ");
+		System.out.println("Step 6. Login to the mailbox");
+		System.out.println("Step 7. Open email with subject containing \"Please confirm your account\"  and the email of the new account at step 3");
+		System.out.println("Step 8. Click on the activate link");
+
+		GeneralPage.confirmMail(userName);
+		
+		Utilities.switchToNewTab();
+		
+		String expectedRegisterMsg = ("Registration Confirmed! You can now log in to the site.");
+		String actualRegisterMsg = registerPage.getRegisterMsg();
+		
+		System.out.println("VP: Redirect to Railways page and message \"Registration Confirmed! You can now log in to the site\" is shown");
+		Assert.assertEquals(actualRegisterMsg, expectedRegisterMsg, "Register message is not displayed correctly!");
+
 	}
 	
 	

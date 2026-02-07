@@ -4,6 +4,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import Constant.Constant;
 import org.openqa.selenium.By;
+import java.util.Set;
 
 
 public class Utilities {
@@ -15,15 +16,13 @@ public class Utilities {
     }
 	
 	public static void scrollToElement(By locator) {
-        WebElement element = Constant.WEBDRIVER.findElement(locator);
-        JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
-    }
-	
+	    scrollToElement(Constant.WEBDRIVER.findElement(locator));
+	}
+
 	public static void scrollToElement(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
-    }
+	    JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
+	    js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
+	}
 	
 	public static void safeClick(By locator) {
 
@@ -46,6 +45,29 @@ public class Utilities {
 	    element.clear();
 	    
 	    element.sendKeys(text);
+	}
+	
+	public static String safeGetText(By locator) {
+	    WaitUtils.waitForVisible(locator);
+	    
+	    WebElement element = Constant.WEBDRIVER.findElement(locator);
+	    
+	    scrollToElement(element);
+	    
+	    return element.getText();
+	   
+	}
+	
+	public static void switchToNewTab() {
+	    String currentWindow = Constant.WEBDRIVER.getWindowHandle();
+	    Set<String> allWindows = Constant.WEBDRIVER.getWindowHandles();
+	    
+	    for (String window : allWindows) {
+	        if (!window.equals(currentWindow)) {
+	            Constant.WEBDRIVER.switchTo().window(window);
+	            break;
+	        }
+	    }
 	}
 	
 }

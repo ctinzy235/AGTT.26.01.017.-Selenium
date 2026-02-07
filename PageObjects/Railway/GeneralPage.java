@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 
 import Common.Tab;
 import Common.Utilities;
-import Common.WaitUtils;
 import Constant.Constant;
 
 
@@ -20,8 +19,7 @@ public class GeneralPage {
     }
         
     public String getWelcomeMessage() {
-        WaitUtils.waitForVisible(lblWelcomeMessage);
-        return Constant.WEBDRIVER.findElement(lblWelcomeMessage).getText();
+        return Utilities.safeGetText(lblWelcomeMessage);
     }
     
     public boolean isTabLogoutDisplayed() {

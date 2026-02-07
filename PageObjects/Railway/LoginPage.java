@@ -1,7 +1,6 @@
 package Railway;
 
 import org.openqa.selenium.By;
-import Constant.Constant;
 import Common.Utilities;
 import DataObjects.User;
 
@@ -16,7 +15,7 @@ public class LoginPage extends GeneralPage {
     // Elements
 
     public String getLoginErrorMsg() {
-        return Constant.WEBDRIVER.findElement(lblLoginErrorMsg).getText();
+        return Utilities.safeGetText(lblLoginErrorMsg);
     }
 
     // Methods

@@ -141,9 +141,7 @@ public class LoginTest extends TestBase{
 		homePage.open();
 		
 		System.out.println("Pre-condition: a not-active account is existing");
-		
 		homePage.gotoPage(Tab.REGISTER);
-		
 		registerPage.register(registerUser);
 		
 		System.out.println("Step 2. Click on \"Login\" tab");

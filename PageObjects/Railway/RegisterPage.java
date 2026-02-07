@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 //import org.openqa.selenium.WebElement;
 
 import Common.Utilities;
-import Constant.Constant;
 import DataObjects.User;
 import Constant.RegisterField;
 
@@ -17,21 +16,26 @@ public class RegisterPage extends GeneralPage{
 	private final By lblRegisterErrorMsg = By.xpath("//p[@class=\"message error\"]");
 	private final By lblPasswordErrorMsg = By.xpath("//label[@class='validation-error'and@for='password']");
 	private final By lblPidErrorMsg = By.xpath("//label[@class='validation-error'and@for='pid']");
+	private final By lblRegisterMsg = By.xpath("//div[@id='content']//p");
 
 	private String registerXpath = "//input[@id='%s']";
 	
 	// Elements
 	
 	public String getPasswordErrorMsg() {
-	    return Constant.WEBDRIVER.findElement(lblPasswordErrorMsg).getText();
+	    return Utilities.safeGetText(lblPasswordErrorMsg);
 	}
 
 	public String getPidErrorMsg() {
-	    return Constant.WEBDRIVER.findElement(lblPidErrorMsg).getText();
+	    return Utilities.safeGetText(lblPidErrorMsg);
 	}
 
 	public String getRegisterErrorMsg() {
-	    return Constant.WEBDRIVER.findElement(lblRegisterErrorMsg).getText();
+	    return Utilities.safeGetText(lblRegisterErrorMsg);
+	}
+	
+	public String getRegisterMsg() {
+	    return Utilities.safeGetText(lblRegisterMsg);
 	}
 	
 	protected By getFieldLocator(RegisterField register) {
